@@ -1,0 +1,25 @@
+source venv/Scripts/activate
+
+python manage.py runserver
+
+superuser: ldasilva
+
+leodasilva
+000
+
+
+
+def modificarPersona(request):
+    dni=request.POST['dni']
+    apellido=request.POST['apellido']
+    nombre=request.POST['nombre']
+    edad=request.POST['edad']
+
+    persona=Persona.objects.get(dni=dni)
+    persona.apellido = apellido
+    persona.nombre = nombre
+    persona.edad = edad
+
+    persona.save()
+
+    return redirect('/')

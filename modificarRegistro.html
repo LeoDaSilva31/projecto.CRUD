@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+
+{% block title %}Modificar Registro{% endblock title %}
+
+
+
+{% block body %}
+
+<div class="class row">
+    <div class="class md-4 ossfet md-4">
+        <div class="class card">
+            <div class="class card-body">
+                <form action="/modificarPersona/" method="POST"> {% csrf_token %}
+                    <div class="class form-group py-2">
+                        <input type="text" id="dni" name="dni" value="{{persona.dni}}" class="form-control" placeholder="dni" minlength="7" maxlength="8" readonly required>
+                    </div>
+                    <div class="class form-group py-2">
+                        <input type="text" id="apellido" name="apellido" value="{{persona.apellido}}" class="form-control" placeholder="apellido" maxlength="50" required>
+                    </div>
+                    <div class="class form-group py-2">
+                        <input type="text" id="nombre" name="nombre" value="{{persona.nombre}}" class="form-control" placeholder="nombre" maxlength="50" required>
+                    </div>
+                    <div class="class form-group py-2">
+                        <input type="number" id="edad" name="edad" value="{{persona.edad}}" class="form-control" placeholder="edad" maxlength="2" required>
+                    </div>
+                    <div class="class form-group py-2">
+                        <button type="submit" class="btn btn-success text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% andblock  %}
