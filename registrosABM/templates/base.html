@@ -13,8 +13,16 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
+    <style>
+      .salio {
+        background-color: #ffdddd; /* Color de fondo cuando se marca el checkbox */
+      }
+    </style>
   </head>
   <body>
+
+    
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid nav justify-content-center">
         <a class="navbar-brand">Bienvenido a Registrar Personas</a>
@@ -43,6 +51,27 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var checkboxSalio = document.getElementById('salio');
+        var fechaSalio = document.getElementById('fecha_salida');
+        var formularioContainer = document.getElementById('formularioContainer');
+  
+        checkboxSalio.addEventListener('change', function() {
+          if (this.checked) {
+            fechaSalio.disabled = false;
+            var fechaActual = new Date().toISOString().slice(0, 10);
+            fechaSalio.value = fechaActual;
+            formularioContainer.classList.add('salio'); // Agregar la clase 'salio' al contenedor
+          } else {
+            fechaSalio.disabled = true;
+            fechaSalio.value = '';
+            formularioContainer.classList.remove('salio'); // Remover la clase 'salio' del contenedor
+          }
+        });
+      });
+    </script>
 
 
   </body>

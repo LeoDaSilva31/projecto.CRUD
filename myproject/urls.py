@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path('registrarPersona/', views.registrarPersona),
-    path('edicionPersona/<dni>', views.edicionPersona),
+    path('edicionPersona/<dni_pasaporte>', views.edicionPersona),
     path('editarPersona/', views.editarPersona),
-    path('eliminarRegistro/<dni>', views.eliminarRegistro),
+    path('eliminarRegistro/<dni_pasaporte>', views.eliminarRegistro),
 ]

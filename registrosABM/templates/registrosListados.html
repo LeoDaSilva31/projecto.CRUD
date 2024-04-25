@@ -10,22 +10,35 @@
         <h2>Ingresar Datos</h2>
         <div class="class card">
             <div class="class card-body">
-                <form action="/registrarPersona/" method="POST"> {% csrf_token %}
-                    <div class="class form-group py-2">
-                        <input type="text" id="dni" name="dni" class="form-control" placeholder="dni" minlength="7" maxlength="8" required>
+                <form action="/registrarPersona/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group py-2">
+                        <label for="dni">DNI/Pasaporte:</label>
+                        <input type="text" id="dni_pasaporte" name="dni_pasaporte" class="form-control" placeholder="DNI/Pasaporte" minlength="7" maxlength="8" required>
                     </div>
-                    <div class="class form-group py-2">
-                        <input type="text" id="apellido" name="apellido" class="form-control" placeholder="apellido" maxlength="50" required>
+                    <div class="form-group py-2">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" maxlength="50" required>
                     </div>
-                    <div class="class form-group py-2">
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="nombre" maxlength="50" required>
+                    <div class="form-group py-2">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" maxlength="50" required>
                     </div>
-                    <div class="class form-group py-2">
-                        <input type="number" id="edad" name="edad" class="form-control" placeholder="edad" maxlength="2" required>
+                    <div class="form-group py-2">
+                        <label for="fecha_entrada">Fecha de Entrada:</label>
+                        <input type="date" id="fecha_entrada" name="fecha_entrada" class="form-control" required>
                     </div>
-                    <div class="class form-group py-2">
-                        <button type="submit" class="btn btn-success text-white">Guardar</button>
+                    <div class="form-group py-2">
+                        <label for="fecha_salida">Fecha de Salida:</label>
+                        <input type="date" id="fecha_salida" name="fecha_salida" class="form-control" required>
                     </div>
+                    <div class="form-group py-2">
+                        <label for="numero_habitacion">Número de Habitación:</label>
+                        <input type="number" id="numero_habitacion" name="numero_habitacion" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </form>
+                
                 </form>
             </div>
         </div>
@@ -39,7 +52,9 @@
                         <th>D.N.I.</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
-                        <th>EDAD</th>
+                        <th>FECHA DE ENTRADA</th>
+                        <th id="fecha_salida">FECHA DE SALIDA</th>
+                        <th>Nª DE HABITACIÓN</th>
                         <th colspan="2">OPCIONES</th>
                     </tr>
                 </thead>
@@ -47,12 +62,14 @@
                     {% for registro in registros %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{registro.dni}}</td>
+                        <td>{{registro.dni_pasaporte}}</td>
                         <td>{{registro.nombre}}</td>
                         <td>{{registro.apellido}}</td>
-                        <td>{{registro.edad}}</td>
-                        <td><a href="eliminarRegistro/{{registro.dni}}" class="btn btn-danger">Eliminar</a>
-                            <a href="edicionPersona/{{registro.dni}}" class="btn btn-info">Editar</a>
+                        <td>{{registro.fecha_entrada}}</td>
+                        <td>{{registro.fecha_salida}}</td>
+                        <td>{{registro.numero_habitacion}}</td>
+                        <td><a href="eliminarRegistro/{{registro.dni_pasaporte}}" class="btn btn-danger">Eliminar</a>
+                            <a href="edicionPersona/{{registro.dni_pasaporte}}" class="btn btn-info">Editar</a>
                         </td>                                      
                     </tr>
                     {% endfor %}
