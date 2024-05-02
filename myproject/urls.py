@@ -26,4 +26,5 @@ urlpatterns = [
     path('edicionPersona/<dni_pasaporte>', views.edicionPersona),
     path('editarPersona/', views.editarPersona),
     path('eliminarRegistro/<dni_pasaporte>', views.eliminarRegistro),
+    path('dnis-registrados/', views.dnis_registrados, name='dnis_registrados'),
 ]

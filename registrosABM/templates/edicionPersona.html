@@ -14,7 +14,7 @@
                 <form action="/editarPersona/" method="POST"> {% csrf_token %}
                     <div class="form-group py-2">
                         <label for="dni">DNI/Pasaporte:</label>
-                        <input type="text" id="dni_pasaporte" name="dni_pasaporte" value={{persona.dni_pasaporte}} class="form-control" placeholder="DNI/Pasaporte" minlength="7" maxlength="8" required onlyread>
+                        <input type="text" id="dni_pasaporte" name="dni_pasaporte" value="{{ persona.dni_pasaporte }}" class="form-control" placeholder="DNI/Pasaporte" minlength="7" maxlength="8" required readonly>
                     </div>
                     <div class="form-group py-2">
                         <label for="apellido">Apellido:</label>
@@ -43,5 +43,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    const dniInput = document.getElementById('dni_pasaporte');
+    const dniOriginal = dniInput.value;
+
+    dniInput.addEventListener('input', () => {
+        if (dniInput.value !== dniOriginal) {
+            alert('No puedes modificar el DNI/Pasaporte');
+            dniInput.value = dniOriginal;
+        }
+    });
+</script>
 
 {% endblock %}

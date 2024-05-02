@@ -68,7 +68,7 @@
                         <td>{{registro.fecha_entrada}}</td>
                         <td>{{registro.fecha_salida}}</td>
                         <td>{{registro.numero_habitacion}}</td>
-                        <td><a href="eliminarRegistro/{{registro.dni_pasaporte}}" class="btn btn-danger">Eliminar</a>
+                        <td><td><a href="javascript:void(0);" onclick="confirmDelete('{{registro.dni_pasaporte}}')" class="btn btn-danger">Eliminar</a>
                             <a href="edicionPersona/{{registro.dni_pasaporte}}" class="btn btn-info">Editar</a>
                         </td>                                      
                     </tr>
@@ -78,5 +78,36 @@
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDelete(dni) {
+        if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+            window.location.href = "/eliminarRegistro/" + dni;
+        }
+    }
+</script>
+
+<script>
+    // Obtener la lista de DNIs registrados desde el servidor
+    fetch('/dnis-registrados/')
+        .then(response => response.json())
+        .then(data => {
+            const dnisRegistrados = data;
+            const formulario = document.getElementById('registro-form');
+            const dniInput = document.getElementById('dni_pasaporte');
+
+            // Agregar un evento de validación al input de DNI
+            dniInput.addEventListener('input', () => {
+                const dniIngresado = dniInput.value.trim();
+                if (dnisRegistrados.includes(dniIngresado)) {
+                    alert('El DNI ingresado ya está registrado');
+                    dniInput.value = ''; // Limpiar el input
+                }
+            });
+        })
+        .catch(error => console.error('Error al obtener los DNIs registrados:', error));
+</script>
+
+
 {% endblock body %}
 

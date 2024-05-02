@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Persona
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -19,6 +20,10 @@ def registrarPersona(request):
     persona=Persona.objects.create(dni_pasaporte=dni_pasaporte, apellido=apellido, nombre=nombre, fecha_entrada=fecha_entrada, fecha_salida=fecha_salida, numero_habitacion=numero_habitacion)
 
     return redirect('/')
+
+def dnis_registrados(request):
+    dnis = Persona.objects.values_list('dni_pasaporte', flat=True)
+    return JsonResponse(list(dnis), safe=False)
 
 def edicionPersona(request, dni_pasaporte):
     persona=Persona.objects.get(dni_pasaporte=dni_pasaporte)    
