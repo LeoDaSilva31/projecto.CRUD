@@ -9,8 +9,8 @@
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
         <h2>Ingresar Datos</h2>
         <div class="class card">
-            <div class="class card-body">
-                <form action="/registrarPersona/" method="POST">
+            <div class="card-body">
+                <form action="/registrarPersona/" method="POST" id="registrarPersonaForm">
                     {% csrf_token %}
                     <div class="form-group py-2">
                         <label for="dni">DNI/Pasaporte:</label>
@@ -37,8 +37,6 @@
                         <input type="number" id="numero_habitacion" name="numero_habitacion" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
-                </form>
-                
                 </form>
             </div>
         </div>
@@ -81,9 +79,26 @@
 
 <script>
     function confirmDelete(dni) {
-        if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
-            window.location.href = "/eliminarRegistro/" + dni;
-        }
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Eliminar el registro
+                window.location.href = "/eliminarRegistro/" + dni;
+                Swal.fire(
+                    'Eliminado',
+                    'El registro ha sido eliminado.',
+                    'success'
+                )
+            }
+        })
     }
 </script>
 
@@ -118,6 +133,30 @@
 
     fechaSalidaInput.addEventListener('keydown', function(event) {
         event.preventDefault();
+    });
+</script>
+
+<!-- Incluir la biblioteca SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const form = document.getElementById('registrarPersonaForm');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar envío del formulario
+
+        // Enviar datos del formulario al servidor (por ejemplo, mediante una solicitud AJAX)
+        // ...
+
+        // Mostrar la ventana emergente después de guardar correctamente
+        Swal.fire({
+            title: 'Guardado con éxito',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        }).then(() => {
+            // Aquí puedes agregar código adicional después de cerrar la ventana emergente
+            form.submit(); // Enviar el formulario después de cerrar la ventana emergente
+        });
     });
 </script>
 

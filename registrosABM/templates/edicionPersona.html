@@ -6,23 +6,24 @@
 
 {% block body %}
 
-<div class="class row">
-    <div class="class col-md-4 offset-md-4">
+<div class="row">
+    <div class="col-md-4 offset-md-4">
         <h2>Modificar Datos</h2>
-        <div class="class card">
-            <div class="class card-body">
-                <form action="/editarPersona/" method="POST"> {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarPersona/" method="POST" id="editarPersonaForm">
+                    {% csrf_token %}
                     <div class="form-group py-2">
                         <label for="dni">DNI/Pasaporte:</label>
                         <input type="text" id="dni_pasaporte" name="dni_pasaporte" value="{{ persona.dni_pasaporte }}" class="form-control" placeholder="DNI/Pasaporte" minlength="7" maxlength="8" required readonly>
                     </div>
                     <div class="form-group py-2">
                         <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellido" name="apellido" value={{persona.apellido}} class="form-control" placeholder="Apellido" maxlength="50" required>
+                        <input type="text" id="apellido" name="apellido" value="{{ persona.apellido }}" class="form-control" placeholder="Apellido" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value={{persona.nombre}} class="form-control" placeholder="Nombre" maxlength="50" required>
+                        <input type="text" id="nombre" name="nombre" value="{{ persona.nombre }}" class="form-control" placeholder="Nombre" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
                         <label for="fecha_salida">Fecha de Salida:</label>
@@ -30,12 +31,12 @@
                     </div>
                     <div class="form-group py-2">
                         <label for="numero_habitacion">Número de Habitación:</label>
-                        <input type="number" id="numero_habitacion" name="numero_habitacion" value={{persona.numero_habitacion}} class="form-control" required>
+                        <input type="number" id="numero_habitacion" name="numero_habitacion" value="{{ persona.numero_habitacion }}" class="form-control" required>
                     </div>
-                    <div class="class from-group py-2">
+                    <div class="form-group py-2">
                         <label>
-                            <input type="checkbox" id="salio" name="salio"> ¿Salió?
-                          </label>
+                            <input type="checkbox" id="salio" name="salio" {% if persona.salio %}checked{% endif %}> ¿Salió?
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </form>
@@ -61,6 +62,30 @@
 
     fechaSalidaInput.addEventListener('keydown', function(event) {
         event.preventDefault();
+    });
+</script>
+
+<!-- Incluir la biblioteca SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const editarPersonaForm = document.getElementById('editarPersonaForm');
+
+    editarPersonaForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar envío del formulario
+
+        // Enviar datos del formulario al servidor (por ejemplo, mediante una solicitud AJAX)
+        // ...
+
+        // Mostrar la ventana emergente después de guardar correctamente
+        Swal.fire({
+            title: 'Guardado con éxito',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        }).then(() => {
+            // Aquí puedes agregar código adicional después de cerrar la ventana emergente
+            editarPersonaForm.submit(); // Enviar el formulario después de cerrar la ventana emergente
+        });
     });
 </script>
 
