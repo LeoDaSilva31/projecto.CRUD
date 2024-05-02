@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group py-2">
                         <label for="fecha_salida">Fecha de Salida:</label>
-                        <input type="date" id="fecha_salida" name="fecha_salida" value={{persona.fecha_salida}} class="form-control" required>
+                        <input type="date" id="fecha_salida" name="fecha_salida" value="{{ persona.fecha_salida|date:'Y-m-d' }}" class="form-control" required>
                     </div>
                     <div class="form-group py-2">
                         <label for="numero_habitacion">Número de Habitación:</label>
@@ -55,5 +55,15 @@
         }
     });
 </script>
+
+<script>
+    const fechaSalidaInput = document.getElementById('fecha_salida');
+
+    fechaSalidaInput.addEventListener('keydown', function(event) {
+        event.preventDefault();
+    });
+</script>
+
+
 
 {% endblock %}

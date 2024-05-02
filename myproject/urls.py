@@ -21,7 +21,7 @@ from registrosABM import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.home, name='home'),
     path('registrarPersona/', views.registrarPersona),
     path('edicionPersona/<dni_pasaporte>', views.edicionPersona),
     path('editarPersona/', views.editarPersona),

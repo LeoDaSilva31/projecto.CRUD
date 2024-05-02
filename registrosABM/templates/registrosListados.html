@@ -108,6 +108,19 @@
         .catch(error => console.error('Error al obtener los DNIs registrados:', error));
 </script>
 
+<script>
+    const fechaEntradaInput = document.getElementById('fecha_entrada');
+    const fechaSalidaInput = document.getElementById('fecha_salida');
+
+    fechaEntradaInput.addEventListener('keydown', function(event) {
+        event.preventDefault();
+    });
+
+    fechaSalidaInput.addEventListener('keydown', function(event) {
+        event.preventDefault();
+    });
+</script>
+
 
 {% endblock body %}
 
