@@ -7,7 +7,7 @@
 {% block body %}
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <h2>Ingresar Datos</h2>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', sans-serif; font-weight: bold; color: #007bff;">Ingresar Datos</h2>
         <div class="class card">
             <div class="card-body">
                 <form action="/registrarPersona/" method="POST" id="registrarPersonaForm">
@@ -37,11 +37,13 @@
                         <input type="number" id="numero_habitacion" name="numero_habitacion" class="form-control" min="1" max="15" required>
                     </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="reset" class="btn btn-danger">Limpiar</button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', sans-serif; font-weight: bold; color: #007bff;">Datos almacenados</h2>
         <div class="class table-responsive py-2">
             <table class="table table-striped">
                 <thead>

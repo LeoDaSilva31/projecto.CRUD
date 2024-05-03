@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <h2>Modificar Datos</h2>
+        <h2 style="text-align: center; font-family: 'Helvetica Neue', sans-serif; font-weight: bold; color: #007bff;">Modificar Datos</h2>
         <div class="card">
             <div class="card-body">
                 <form action="/editarPersona/" method="POST" id="editarPersonaForm">
@@ -38,7 +38,10 @@
                             <input type="checkbox" id="salio" name="salio" {% if persona.salio %}checked{% endif %}> ¿Salió?
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="{% url 'home' %}" class="btn btn-danger">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>
