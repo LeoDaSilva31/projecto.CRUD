@@ -46,27 +46,28 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>D.N.I.</th>
-                        <th>NOMBRE</th>
-                        <th>APELLIDO</th>
-                        <th>FECHA DE ENTRADA</th>
-                        <th id="fecha_salida">FECHA DE SALIDA</th>
-                        <th>Nª DE HABITACIÓN</th>
-                        <th colspan="2">OPCIONES</th>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center;">D.N.I.</th>
+                        <th style="text-align: center;">NOMBRE</th>
+                        <th style="text-align: center;">APELLIDO</th>
+                        <th style="text-align: center;">FECHA DE ENTRADA</th>
+                        <th id="fecha_salida" style="text-align: center;">FECHA DE SALIDA</th>
+                        <th style="text-align: center;">Nª DE HABITACIÓN</th>
+                        <th colspan="2" style="text-align: center;">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for registro in registros %}
                     <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{registro.dni_pasaporte}}</td>
-                        <td>{{registro.nombre}}</td>
-                        <td>{{registro.apellido}}</td>
-                        <td>{{registro.fecha_entrada}}</td>
-                        <td>{{registro.fecha_salida}}</td>
-                        <td>{{registro.numero_habitacion}}</td>
-                        <td><td><a href="javascript:void(0);" onclick="confirmDelete('{{registro.dni_pasaporte}}')" class="btn btn-danger">Eliminar</a>
+                        <td style="text-align: center;">{{forloop.counter}}</td>
+                        <td style="text-align: center;">{{registro.dni_pasaporte}}</td>
+                        <td style="text-align: center;">{{registro.nombre}}</td>
+                        <td style="text-align: center;">{{registro.apellido}}</td>
+                        <td style="text-align: center;">{{registro.fecha_entrada}}</td>
+                        <td style="text-align: center;">{{registro.fecha_salida}}</td>
+                        <td style="text-align: center;">{{registro.numero_habitacion}}</td>
+                        <td style="text-align: center;">
+                            <a href="javascript:void(0);" onclick="confirmDelete('{{registro.dni_pasaporte}}')" class="btn btn-danger">Eliminar</a>
                             <a href="edicionPersona/{{registro.dni_pasaporte}}" class="btn btn-info">Editar</a>
                         </td>                                      
                     </tr>

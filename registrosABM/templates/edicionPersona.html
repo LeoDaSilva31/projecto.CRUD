@@ -89,6 +89,23 @@
     });
 </script>
 
+<script>
+    const numeroHabitacionInput = document.getElementById('numero_habitacion');
+
+    numeroHabitacionInput.addEventListener('input', function() {
+        const valor = parseInt(this.value);
+        if (isNaN(valor) || valor < 1 || valor > 15) {
+            Swal.fire({
+                title: 'Número de Habitación incorrecto',
+                text: 'Por favor, ingrese un número entero positivo del 1 al 15 inclusive.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
+            this.value = ''; // Limpiar el campo
+        }
+    });
+</script>
+
 
 
 {% endblock %}
