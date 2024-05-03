@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group py-2">
                         <label for="numero_habitacion">Número de Habitación:</label>
-                        <input type="number" id="numero_habitacion" name="numero_habitacion" class="form-control" required>
+                        <input type="number" id="numero_habitacion" name="numero_habitacion" class="form-control" min="1" max="15" required>
                     </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </form>
@@ -102,20 +102,27 @@
     }
 </script>
 
+<!-- Incluir la biblioteca SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     // Obtener la lista de DNIs registrados desde el servidor
     fetch('/dnis-registrados/')
         .then(response => response.json())
         .then(data => {
             const dnisRegistrados = data;
-            const formulario = document.getElementById('registro-form');
             const dniInput = document.getElementById('dni_pasaporte');
 
             // Agregar un evento de validación al input de DNI
             dniInput.addEventListener('input', () => {
                 const dniIngresado = dniInput.value.trim();
                 if (dnisRegistrados.includes(dniIngresado)) {
-                    alert('El DNI ingresado ya está registrado');
+                    Swal.fire({
+                        title: 'DNI ya registrado',
+                        text: 'El DNI ingresado ya está registrado.',
+                        icon: 'warning',
+                        confirmButtonText: 'Aceptar'
+                    });
                     dniInput.value = ''; // Limpiar el input
                 }
             });
@@ -157,6 +164,26 @@
             // Aquí puedes agregar código adicional después de cerrar la ventana emergente
             form.submit(); // Enviar el formulario después de cerrar la ventana emergente
         });
+    });
+</script>
+
+<!-- Incluir la biblioteca SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const numeroHabitacionInput = document.getElementById('numero_habitacion');
+
+    numeroHabitacionInput.addEventListener('input', function() {
+        const valor = parseInt(this.value);
+        if (isNaN(valor) || valor < 1 || valor > 15) {
+            Swal.fire({
+                title: 'Número de Habitación incorrecto',
+                text: 'Por favor, ingrese un número entero positivo del 1 al 15 inclusive.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
+            this.value = ''; // Limpiar el campo
+        }
     });
 </script>
 
