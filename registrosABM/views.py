@@ -79,24 +79,3 @@ def buscar_resultados(request):
         'search_performed': search_performed
     })
 
-def buscar_por_numero_habitacion(request):
-    query = request.GET.get('q', '')
-    resultados = None
-    search_performed = False
-
-    if query:
-        try:
-            numero_habitacion = int(query)
-            if 1 <= numero_habitacion <= 15:
-                resultados = Persona.objects.filter(numero_habitacion=numero_habitacion)
-            else:
-                resultados = []  # Número de habitación fuera de rango
-        except ValueError:
-            resultados = []  # El query no es un número válido
-        search_performed = True  # Se realizó una búsqueda
-
-    return render(request, 'resultados_busqueda.html', {
-        'resultados': resultados,
-        'query': query,
-        'search_performed': search_performed
-    })
