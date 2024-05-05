@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadrícula de Habitaciones</title>
+    <style>
+        /* Estilos para la cuadrícula */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+            grid-template-rows: repeat(5, 1fr); /* 5 filas */
+            gap: 10px; /* Espacio entre celdas */
+        }
+
+        .room {
+            padding: 10px;
+            text-align: center;
+            background-color: lightgreen; /* Color de fondo por defecto (verde claro) */
+        }
+
+        /* Estilo para habitaciones ocupadas (rojo) */
+        .room.occupied {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Habitaciones (15 divs) -->
+        <div class="room" data-room="1">1</div>
+        <div class="room" data-room="2">2</div>
+        <div class="room" data-room="2">3</div>
+        <div class="room" data-room="2">4</div>
+        <div class="room" data-room="2">5</div>
+        <div class="room" data-room="2">6</div>
+        <div class="room" data-room="2">7</div>
+        <div class="room" data-room="2">8</div>
+        <div class="room" data-room="2">9</div>
+        <div class="room" data-room="2">10</div>
+        <div class="room" data-room="2">11</div>
+        <div class="room" data-room="2">12</div>
+        <div class="room" data-room="2">13</div>
+        <div class="room" data-room="2">14</div>
+        <div class="room" data-room="2">15</div>
+        
+    </div>
+
+    <script>
+        // Supongamos que tienes un array de objetos con información de las habitaciones
+        const roomsData = [
+            { number: 1, occupied: true, checkoutDate: '2024-05-10' },
+            // ... (otros objetos)
+        ];
+
+        // Verificar y aplicar estilos
+        roomsData.forEach(room => {
+            const roomElement = document.querySelector(`.room[data-room="${room.number}"]`);
+            if (room.occupied && new Date(room.checkoutDate) >= new Date()) {
+                roomElement.classList.add('occupied');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -23,8 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('registrarPersona/', views.registrarPersona),
-    path('edicionPersona/<dni_pasaporte>', views.edicionPersona),
+    path('edicionPersona/<dni_pasaporte>', views.edicionPersona, name='edicionPersona/<dni_pasaporte>'),
     path('editarPersona/', views.editarPersona),
-    path('eliminarRegistro/<dni_pasaporte>', views.eliminarRegistro),
+    path('eliminarRegistro/<dni_pasaporte>', views.eliminarRegistro, name='eliminarRegistro'),
     path('dnis-registrados/', views.dnis_registrados, name='dnis_registrados'),
+    path('buscar_resultados/', views.buscar_resultados, name='buscar_resultados'),
+    path('buscar_por_numero_habitacion/', views.buscar_por_numero_habitacion, name='buscar_por_numero_habitacion'),
 ]

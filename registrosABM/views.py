@@ -55,3 +55,48 @@ def eliminarRegistro(request,dni_pasaporte):
 
     return redirect('/')
 
+from django.db.models import Q
+
+
+def buscar_resultados(request):
+    query = request.GET.get('q', '')
+    campo_busqueda = request.GET.get('campo', 'nombre')
+    resultados = None
+    search_performed = False
+
+    if query:
+        if campo_busqueda == 'nombre':
+            resultados = Persona.objects.filter(nombre__icontains=query)
+        elif campo_busqueda == 'apellido':
+            resultados = Persona.objects.filter(apellido__icontains=query)
+        elif campo_busqueda == 'dni_pasaporte':
+            resultados = Persona.objects.filter(dni_pasaporte__icontains=query)
+        search_performed = True  # Se realizó una búsqueda
+
+    return render(request, 'resultados_busqueda.html', {
+        'resultados': resultados,
+        'query': query,
+        'search_performed': search_performed
+    })
+
+def buscar_por_numero_habitacion(request):
+    query = request.GET.get('q', '')
+    resultados = None
+    search_performed = False
+
+    if query:
+        try:
+            numero_habitacion = int(query)
+            if 1 <= numero_habitacion <= 15:
+                resultados = Persona.objects.filter(numero_habitacion=numero_habitacion)
+            else:
+                resultados = []  # Número de habitación fuera de rango
+        except ValueError:
+            resultados = []  # El query no es un número válido
+        search_performed = True  # Se realizó una búsqueda
+
+    return render(request, 'resultados_busqueda.html', {
+        'resultados': resultados,
+        'query': query,
+        'search_performed': search_performed
+    })
