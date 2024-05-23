@@ -79,3 +79,5 @@ def buscar_resultados(request):
         'search_performed': search_performed
     })
 
+def habitaciones(request):
+    return render(request, 'habitaciones.html')

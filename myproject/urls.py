@@ -28,5 +28,6 @@ urlpatterns = [
     path('eliminarRegistro/<dni_pasaporte>', views.eliminarRegistro, name='eliminarRegistro'),
     path('dnis-registrados/', views.dnis_registrados, name='dnis_registrados'),
     path('buscar_resultados/', views.buscar_resultados, name='buscar_resultados'),
+    path('habitaciones/', views.habitaciones, name='habitaciones'),
     
 ]
